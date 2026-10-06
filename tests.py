@@ -37,7 +37,13 @@ class TestBooksCollector:
         assert collector.get_books_with_specific_genre('Ужасы') == ['Сияние']
         assert collector.get_books_for_children() == []
 
+    def test_add_book_in_favorites_1book(self):
+        collector = BooksCollector()
+        collector.add_new_book('Чай для чайников')
+        collector.add_book_in_favorites('Чай для чайников')
 
+        assert collector.get_list_of_favorites_books() == ['Чай для чайников']
+        
     #def test_add_new_book_add_two_books(self):
         # создаем экземпляр (объект) класса BooksCollector
         #collector = BooksCollector()
