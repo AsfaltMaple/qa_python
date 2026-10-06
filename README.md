@@ -7,3 +7,4 @@
 - get_books_with_specific_genre и get_books_for_children
 - add_book_in_favorites
 - delete_book_from_favorites
+- get_list_of_favorites_books
