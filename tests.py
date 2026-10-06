@@ -67,4 +67,5 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book('Чай для чайников')
         assert collector.books_genre == {'Чай для чайников': ''}
+
         
