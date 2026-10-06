@@ -21,12 +21,13 @@ class TestBooksCollector:
 
         assert collector.get_book_genre(book_name) == genre
 
-    def test_get_books_with_specific_genre_1book_detective(self):
+    @pytest.mark.parametrize('book_name, genre', [('Хроники Амбера', 'Фантастика'), ('Сияние', 'Ужасы'),('Сто лет одиночества', 'Детективы'), ('Смешарики', 'Мультфильмы'),('Мыши на крыше', 'Комедии')])
+    def test_get_books_with_specific_genre_1book_in_each_genre(self, book_name, genre):
         collector = BooksCollector()
-        collector.add_new_book('Сто лет одиночества')
-        collector.set_book_genre('Сто лет одиночества', 'Детективы')
+        collector.add_new_book(book_name)
+        collector.set_book_genre(book_name, genre)
 
-        assert collector.get_books_with_specific_genre('Детективы') == ['Сто лет одиночества']
+        assert collector.get_books_with_specific_genre(genre) == [book_name]
 
     def test_get_books_with_specific_genre_1book_horror_not_for_children(self):
         collector = BooksCollector()
