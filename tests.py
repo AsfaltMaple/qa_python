@@ -15,6 +15,14 @@ class TestBooksCollector:
             assert collector.genre == ['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии']
             assert collector.genre_age_rating == ['Ужасы', 'Детективы']
 
+    def test_add_new_book_add_1book_existing_genre(self):
+        collector = BooksCollector()
+        collector.add_new_book('Хроники Амбера')
+        collector.set_book_genre('Хроники Амбера', 'Фантастика')
+
+        assert collector.get_book_genre('Хроники Амбера') == 'Фантастика'
+
+    
     #def test_add_new_book_add_two_books(self):
         # создаем экземпляр (объект) класса BooksCollector
         #collector = BooksCollector()
