@@ -43,7 +43,17 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Чай для чайников')
 
         assert collector.get_list_of_favorites_books() == ['Чай для чайников']
-        
+
+    def test_delete_book_from_favorites_add_2books_remove_1book_1book_left(self):
+        collector = BooksCollector()
+        collector.add_new_book('Чай для чайников')
+        collector.add_new_book('Мыши на крыше')
+        collector.add_book_in_favorites('Чай для чайников')
+        collector.add_book_in_favorites('Мыши на крыше')
+        collector.delete_book_from_favorites('Чай для чайников')
+
+        assert collector.get_list_of_favorites_books() == ['Мыши на крыше']
+            
     #def test_add_new_book_add_two_books(self):
         # создаем экземпляр (объект) класса BooksCollector
         #collector = BooksCollector()
