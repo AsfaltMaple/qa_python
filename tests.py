@@ -29,6 +29,15 @@ class TestBooksCollector:
 
         assert collector.get_books_with_specific_genre('Детективы') == ['Сто лет одиночества']
 
+    def test_get_books_with_specific_genre_1book_horror_not_for_children(self):
+        collector = BooksCollector()
+        collector.add_new_book('Сияние')
+        collector.set_book_genre('Сияние', 'Ужасы')
+
+        assert collector.get_books_with_specific_genre('Ужасы') == ['Сияние']
+        assert collector.get_books_for_children() == []
+
+
     #def test_add_new_book_add_two_books(self):
         # создаем экземпляр (объект) класса BooksCollector
         #collector = BooksCollector()
