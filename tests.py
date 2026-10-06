@@ -63,4 +63,7 @@ class TestBooksCollector:
         collector.add_book_in_favorites(book_name)
         assert collector.get_list_of_favorites_books() == [book_name]
     
-   
+    def test_add_new_book_without_genre(self):
+        collector = BooksCollector()
+        collector.add_new_book('Чай для чайников')
+        assert collector.books_genre == {'Чай для чайников': ''}
