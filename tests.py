@@ -2,8 +2,7 @@ import pytest
 
 from main import BooksCollector
 
-# класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
-# обязательно указывать префикс Test
+
 class TestBooksCollector:
 
     def test_books_collector_init(self):
@@ -18,7 +17,6 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, genre)
-
         assert collector.get_book_genre(book_name) == genre
 
     @pytest.mark.parametrize('book_name, genre', [('Хроники Амбера', 'Фантастика'), ('Сияние', 'Ужасы'),('Сто лет одиночества', 'Детективы'), ('Смешарики', 'Мультфильмы'),('Мыши на крыше', 'Комедии')])
@@ -26,7 +24,6 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, genre)
-
         assert collector.get_books_with_specific_genre(genre) == [book_name]
 
     @pytest.mark.parametrize('book_name, genre', [('Сияние', 'Ужасы'),('Сто лет одиночества', 'Детективы')])
@@ -34,7 +31,6 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, genre)
-
         assert collector.get_books_with_specific_genre(genre) == [book_name]
 
     @pytest.mark.parametrize('book_name, adult_genre', [('Сияние', 'Ужасы'), ('Сто лет одиночества', 'Детективы')])
@@ -42,7 +38,6 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, adult_genre)
-       
         assert collector.books_genre == {book_name: adult_genre}
         assert collector.get_books_for_children() == []
 
@@ -50,7 +45,6 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book('Чай для чайников')
         collector.add_book_in_favorites('Чай для чайников')
-
         assert collector.get_list_of_favorites_books() == ['Чай для чайников']
 
     def test_delete_book_from_favorites_add_2books_remove_1book_1book_left(self):
@@ -60,17 +54,13 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Чай для чайников')
         collector.add_book_in_favorites('Мыши на крыше')
         collector.delete_book_from_favorites('Чай для чайников')
-
         assert collector.get_list_of_favorites_books() == ['Мыши на крыше']
 
     @pytest.mark.parametrize('book_name', ['Чай для чайников', 'Мыши на крыше'])
     def test_get_list_of_favorites_books(self, book_name):
         collector = BooksCollector()
         collector.add_new_book(book_name)
-        #collector.add_new_book('Мыши на крыше')
         collector.add_book_in_favorites(book_name)
-        #collector.add_book_in_favorites('Мыши на крыше')
-
         assert collector.get_list_of_favorites_books() == [book_name]
     
    
