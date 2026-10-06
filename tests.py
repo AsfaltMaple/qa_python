@@ -22,7 +22,13 @@ class TestBooksCollector:
 
         assert collector.get_book_genre('Хроники Амбера') == 'Фантастика'
 
-    
+    def test_get_books_with_specific_genre_1book_detective(self):
+        collector = BooksCollector()
+        collector.add_new_book('Сто лет одиночества')
+        collector.set_book_genre('Сто лет одиночества', 'Детективы')
+
+        assert collector.get_books_with_specific_genre('Детективы') == ['Сто лет одиночества']
+
     #def test_add_new_book_add_two_books(self):
         # создаем экземпляр (объект) класса BooksCollector
         #collector = BooksCollector()
