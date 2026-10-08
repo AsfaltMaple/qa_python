@@ -33,6 +33,14 @@ class TestBooksCollector:
         collector.set_book_genre(book_name, genre)
         assert collector.get_books_with_specific_genre(genre) == [book_name]
 
+    @pytest.mark.parametrize('book_name, children_genre', [('Хроники Нарнии', 'Фантастика'), ('Смешарики', 'Мультфильмы'), ('Вредные советы', 'Комедии')])
+    def test_get_books_for_children_fantasy_cartoon_comedy_for_children(self, book_name, children_genre):
+        collector = BooksCollector()
+        collector.add_new_book(book_name)
+        collector.set_book_genre(book_name, children_genre)
+        assert collector.books_genre == {book_name: children_genre}
+        assert collector.get_books_for_children() == [book_name]
+    
     @pytest.mark.parametrize('book_name, adult_genre', [('Сияние', 'Ужасы'), ('Сто лет одиночества', 'Детективы')])
     def test_get_books_for_children_horror_and_detective_not_for_children(self, book_name, adult_genre):
         collector = BooksCollector()
@@ -68,4 +76,3 @@ class TestBooksCollector:
         collector.add_new_book('Чай для чайников')
         assert collector.books_genre == {'Чай для чайников': ''}
 
-        
